@@ -1,28 +1,28 @@
 {
-  "_from": "maskingtape.css@1.0.3",
-  "_id": "maskingtape.css@1.0.3",
+  "_from": "maskingtape.css@1.5.0",
+  "_id": "maskingtape.css@1.5.0",
   "_inBundle": false,
-  "_integrity": "sha512-fCi9Uua5YnYtkiIlME9r5Hz7aEMujgVdm8HLuouNJhBv0s9BqBlVfzRDuJESccNIafotU5fVJkqiW/OVkAlPjQ==",
+  "_integrity": "sha512-iAAoBBkG8bk0EU50ykbB3AbuIBQ7lgs9gTVRD9ilABt7VZwJCxlr4zjvKRLNW+3/wH/kT6YDoaxyaRu3fP+wSw==",
   "_location": "/maskingtape.css",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "maskingtape.css@1.0.3",
+    "raw": "maskingtape.css@1.5.0",
     "name": "maskingtape.css",
     "escapedName": "maskingtape.css",
-    "rawSpec": "1.0.3",
+    "rawSpec": "1.5.0",
     "saveSpec": null,
-    "fetchSpec": "1.0.3"
+    "fetchSpec": "1.5.0"
   },
   "_requiredBy": [
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/maskingtape.css/-/maskingtape.css-1.0.3.tgz",
-  "_shasum": "f20b9cf0015d204552f20f5d6afd12fe26c79224",
-  "_spec": "maskingtape.css@1.0.3",
-  "_where": "/home/cris7fe/brutestrap",
+  "_resolved": "https://registry.npmjs.org/maskingtape.css/-/maskingtape.css-1.5.0.tgz",
+  "_shasum": "b47d0acf325e7bdb64ff5867c369c996251834cb",
+  "_spec": "maskingtape.css@1.5.0",
+  "_where": "/home/cris7fe/dss",
   "author": {
     "name": "@dosy"
   },
