@@ -1,4 +1,4 @@
-# maskingtape.css (1.5.2)
+# maskingtape.css (1.6.0)
 
 Block off where you want your styles to apply. Control the drips, er... I mean, the cascade.
 
