@@ -13,15 +13,9 @@ T.defCollection("Prefix", {
 
 let counter = 1;
 
+const c3s = {scope, rescope};
+
 export default c3s;
-
-Object.assign(c3s,{scope,rescope});
-
-function c3s(parts, ...values) {
-  // not sure what this does yet
-  // but as an object c3s exports scope and rescope to allow components
-  // to request stylesheets be scoped to them
-}
 
 export function generateUniquePrefix() {
   counter += 3;
@@ -36,12 +30,21 @@ export function extendPrefix({prefix:existingPrefix}) {
 }
 
 export function findStyleSheet(url) {
+  let ss;
   url = getURL(url);
   const ssFound = Array.from(document.styleSheets).find(({href}) => href == url);
   if ( !ssFound ) {
     const qsFound = document.querySelector(`link[href="${url}"]`);
-    return qsFound && qsFound;
-  } else return ssFound.ownerNode;
+    if ( qsFound ) {
+      ss = qsFound;
+    }
+  } else {
+    ss = ssFound.ownerNode;
+  }
+
+  if ( ss instanceof HTMLLinkElement ) {
+    return ss;
+  }
 }
 
 export function isStyleSheetAccessible(ss) {
@@ -59,7 +62,7 @@ export function isStyleSheetAccessible(ss) {
 export function cloneStyleSheet(ss) {
   const newNode = ss.cloneNode(true);
   newNode.dataset.scoped = true;
-  document.head.insertAdjacentElement('beforeEnd', newNode);
+  document.head.insertAdjacentElement('beforeend', newNode);
   ss.remove();
   return newNode;
 }
@@ -191,8 +194,8 @@ export function scope(url) {
 export function rescope({scopedSheet, prefix:existingPrefix}) {
   const prefix = generateUniquePrefix().prefix[0];
   const combinator = '';
-  prefixAllRules(scopedSS,prefix,combinator);
-  return {scopedSheet: scopedSS, prefix: prefix + existingPrefix};
+  prefixAllRules(scopedSheet,prefix,combinator);
+  return {scopedSheet, prefix: prefix + existingPrefix};
 }
 
 export function getURL(uri) {

@@ -8,7 +8,10 @@
   },
   "deprecated": false,
   "description": "Block off where you want your styles to go. Scoped-styles, control the cascade, CSS-in-JS library.",
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^7.3.0",
+    "typescript": "^3.9.5"
+  },
   "keywords": [
     "@dosy",
     "scoped-styles",
@@ -22,7 +25,11 @@
     "url": "https://github.com//crislin2046/c3s"
   },
   "scripts": {
-    "test": "serve -p 8080"
+    "test": "serve -p 8080",
+    "tscheck-client": "tsc --target ES2020 --checkJs --allowJs --outFile typetests/client.js --module System c3s.js decs.d.ts",
+    "tscheck": "npm run tscheck-client",
+    "lint": "npx eslint *.js",
+    "check": "npm run lint && npm run tscheck"
   },
   "version": "1.6.0"
 }
