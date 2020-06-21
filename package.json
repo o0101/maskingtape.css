@@ -32,5 +32,5 @@
     "lint": "npx eslint *.js",
     "check": "npm run lint && npm run tscheck"
   },
-  "version": "1.8.0"
+  "version": "1.9.0"
 }
