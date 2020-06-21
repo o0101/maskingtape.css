@@ -29,7 +29,22 @@ export function extendPrefix({prefix:existingPrefix}) {
   existingPrefix.push(generateUniquePrefix().prefix[0]);
 }
 
-export function findStyleSheet(url) {
+export function findStyleSheet(link) {
+  let ss;
+  const ssFound = Array.from(document.styleSheets).find(({ownerNode}) => ownerNode == link);
+  if ( !ssFound ) {
+    console.warn("last error", link);
+    throw new TypeError(`Cannot find sheet for link`);
+  } else {
+    ss = ssFound;
+  }
+
+  if ( ss instanceof CSSStyleSheet ) {
+    return ss;
+  }
+}
+
+export function findStyleLink(url) {
   let ss;
   url = getURL(url);
   const ssFound = Array.from(document.styleSheets).find(({href}) => href == url);
@@ -62,8 +77,7 @@ export function isStyleSheetAccessible(ss) {
 export function cloneStyleSheet(ss) {
   const newNode = ss.cloneNode(true);
   newNode.dataset.scoped = true;
-  document.head.insertAdjacentElement('beforeend', newNode);
-  ss.remove();
+  ss.replaceWith(newNode);
   return newNode;
 }
 
@@ -152,7 +166,7 @@ function prefixStyleRule(lastRule, ss, lastRuleIndex, prefix, combinator) {
 }
 
 export async function scopeStyleSheet(url,prefix,combinator = ' ') {
-  const ss = findStyleSheet(url);
+  const ss = findStyleLink(url);
 
   if ( ! ss ) {
     throw new TypeError(`Stylesheet with URI ${url} cannot be found.`);
@@ -169,17 +183,25 @@ export async function scopeStyleSheet(url,prefix,combinator = ' ') {
         }
         const scopedSS = cloneStyleSheet(ss);
         scopedSS.onload = () => {
-          prefixAllRules(scopedSS.sheet,prefix, combinator);
+          const sheet = findStyleSheet(scopedSS);
+          prefixAllRules(sheet,prefix, combinator);
         };
         res(scopedSS);
       };
     });
   } else {
     const scopedSS = cloneStyleSheet(ss);
-    scopedSS.onload = () => {
-      prefixAllRules(scopedSS.sheet,prefix, combinator);
-    };
-    return scopedSS;
+    return new Promise(res => {
+      scopedSS.onload = () => {
+        try {
+          const sheet = findStyleSheet(scopedSS);
+          prefixAllRules(sheet,prefix, combinator);
+        } catch(e) {
+          console.warn(e);
+        }
+        res(scopedSS);
+      };
+    });
   }
 }
 

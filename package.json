@@ -9,6 +9,7 @@
   "deprecated": false,
   "description": "Block off where you want your styles to go. Scoped-styles, control the cascade, CSS-in-JS library.",
   "devDependencies": {
+    "@types/node": "^14.0.13",
     "eslint": "^7.3.0",
     "typescript": "^3.9.5"
   },
@@ -26,7 +27,7 @@
   },
   "scripts": {
     "test": "serve -p 8080",
-    "tscheck-client": "tsc --target ES2020 --checkJs --allowJs --outFile typetests/client.js --module System c3s.js decs.d.ts",
+    "tscheck-client": "tsc --types node --target ES2020 --checkJs --allowJs --outFile typetests/client.js --module System c3s.js test.js decs.d.ts",
     "tscheck": "npm run tscheck-client",
     "lint": "npx eslint *.js",
     "check": "npm run lint && npm run tscheck"
