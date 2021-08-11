@@ -30,7 +30,9 @@
     "tscheck-client": "tsc --types node --target ES2020 --checkJs --allowJs --outFile typetests/client.js --module System c3s.js test.js decs.d.ts",
     "tscheck": "npm run tscheck-client",
     "lint": "npx eslint *.js",
-    "check": "npm run lint && npm run tscheck"
+    "check": "npm run lint && npm run tscheck",
+    "postinstall": "bash ./setupdev.sh",
+    "prepublish": "bash ./setupprod.sh"
   },
   "version": "1.10.1"
 }
