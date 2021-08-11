@@ -34,5 +34,5 @@
     "pretest": "bash ./setupdev.sh",
     "prepublishOnly": "bash ./setupprod.sh"
   },
-  "version": "1.11.3"
+  "version": "1.11.4"
 }
