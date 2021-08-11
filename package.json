@@ -31,7 +31,7 @@
     "tscheck": "npm run tscheck-client",
     "lint": "npx eslint *.js",
     "check": "npm run lint && npm run tscheck",
-    "postinstall": "bash ./setupdev.sh",
+    "pretest": "bash ./setupdev.sh",
     "prepublishOnly": "bash ./setupprod.sh"
   },
   "version": "1.11.3"
