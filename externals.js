@@ -1,4 +1,4 @@
-import {T} from './vanillatype/t.js'
+import {T} from '../vanillatype/t.js'
 
 export default { T };
 

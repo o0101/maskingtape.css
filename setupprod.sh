@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-mv prod.externals.js externals.js
+cp prod.externals.js externals.js
 
