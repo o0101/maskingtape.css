@@ -1,5 +1,6 @@
 typetests
 jtype-system
+vanillatype
 # Logs
 logs
 *.log
